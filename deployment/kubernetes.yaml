@@ -1,5 +1,5 @@
-apiVersion: apps/v1
 kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: go-react-stack-deployment
 spec:
@@ -17,6 +17,10 @@ spec:
         image: hetelek/go-react-stack:latest
         ports:
         - containerPort: 8000
+        resources:
+          limits:
+            memory: "50Mi"
+            cpu: "1"
 ---
 kind: Service
 apiVersion: v1
