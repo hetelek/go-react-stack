@@ -1,6 +1,9 @@
 FROM golang:latest 
 
-ADD . /app/
+ADD ./main.go /app/main.go
+ADD ./backend /app/backend
+ADD ./frontend/build /app/frontend/build
+
 WORKDIR /app/
 RUN go get -d .
 RUN go build -o start .
