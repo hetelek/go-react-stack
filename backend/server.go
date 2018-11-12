@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-
-	"./simpleserver"
 )
 
 func index(request *http.Request) []byte {
@@ -22,7 +20,7 @@ func StartServer(staticDirectory string) {
 	fs := http.FileServer(http.Dir(staticDirectory))
 	http.Handle("/", http.StripPrefix("/", fs))
 
-	simpleserver.RegisterHandler("/api/", simpleserver.HTTPGET, index)
+	RegisterHandler("/api/", HTTPGET, index)
 
 	fmt.Println("Serving at http://localhost:" + port)
 	http.ListenAndServe(":"+port, nil)
