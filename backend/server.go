@@ -6,8 +6,12 @@ import (
 	"os"
 )
 
-func index(request *http.Request) []byte {
-	return []byte("Test " + request.Method)
+func gethostname(request *http.Request) []byte {
+	hostname, err := os.Hostname()
+	if err != nil {
+		return []byte("error getting hostname")
+	}
+	return []byte(hostname)
 }
 
 // StartServer starts the server at localhost:PORT, where PORT is an env variable, or defaulted to 8000
@@ -20,7 +24,7 @@ func StartServer(staticDirectory string) {
 	fs := http.FileServer(http.Dir(staticDirectory))
 	http.Handle("/", http.StripPrefix("/", fs))
 
-	RegisterHandler("/api/", HTTPGET, index)
+	RegisterHandler("/api/gethostname", HTTPGET, gethostname)
 
 	fmt.Println("Serving at http://localhost:" + port)
 	http.ListenAndServe(":"+port, nil)
