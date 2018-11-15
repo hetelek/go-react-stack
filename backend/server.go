@@ -2,6 +2,7 @@ package server
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 )
@@ -27,5 +28,5 @@ func StartServer(staticDirectory string) {
 	RegisterHandler("/api/gethostname", HTTPGET, gethostname)
 
 	fmt.Println("Serving at http://localhost:" + port)
-	http.ListenAndServe(":"+port, nil)
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
