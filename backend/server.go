@@ -22,10 +22,12 @@ func StartServer(staticDirectory string) {
 		port = "8000"
 	}
 
-	fs := http.FileServer(http.Dir(staticDirectory))
-	http.Handle("/", http.StripPrefix("/", fs))
+	if staticDirectory != "" {
+		fs := http.FileServer(http.Dir(staticDirectory))
+		http.Handle("/", http.StripPrefix("/", fs))
+	}
 
-	RegisterHandler("/api/gethostname", HTTPGET, gethostname)
+	RegisterHandler("/api/hostname", HTTPGET, gethostname)
 
 	fmt.Println("Serving at http://localhost:" + port)
 	log.Fatal(http.ListenAndServe(":"+port, nil))

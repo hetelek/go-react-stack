@@ -9,7 +9,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('api/gethostname')
+    fetch('api/hostname')
     .then(response => response.text())
     .then(hostname => {
       this.setState({ hostname: hostname });
