@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Go React Stack",
+  "name": "A simple React app with a Go-powered backend.",
   "icons": [
     {
       "src": "favicon.ico",
